@@ -31,10 +31,10 @@ Path_of_COM_Basic_Commands_network = os.getcwd()
 print (os.getcwd())
 
 def clear_jsons():
-	files = glob.glob('//ad.gatech.edu/gtfs/COE/CEE/Transpo/smartdata/RealTimeRunTrajectoryFiles_5Sep2019/trajectoryfiles/*.json')
+	files = glob.glob('//RealTimeRunTrajectoryFiles_5Sep2019/trajectoryfiles/*.json')
 	for f1 in files:
 		os.remove(f1)
-	files_signal = glob.glob('//ad.gatech.edu/gtfs/COE/CEE/Transpo/smartdata/RealTimeRunTrajectoryFiles_5Sep2019/signalfiles/*.json')
+	files_signal = glob.glob('//RealTimeRunTrajectoryFiles_5Sep2019/signalfiles/*.json')
 	for f2 in files_signal:
 		os.remove(f2)
 
@@ -431,7 +431,7 @@ for r in range(0, len(Random_Seed)):
 
 			start_sim_wall_clock = math.floor(time.time())
 			print (start_sim_wall_clock)
-			f= open("//ad.gatech.edu/gtfs/COE/CEE/Transpo/smartdata/RealTimeRunTrajectoryFiles_5Sep2019/start_sim_wall_clock.txt","w")
+			f= open("//RealTimeRunTrajectoryFiles_5Sep2019/start_sim_wall_clock.txt","w")
 			f.write(str(start_sim_wall_clock))
 			f.close()
 			#startepoch = time.time()
