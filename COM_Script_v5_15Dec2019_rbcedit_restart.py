@@ -31,10 +31,10 @@ Path_of_COM_Basic_Commands_network = os.getcwd()
 print (os.getcwd())
 
 def clear_jsons():
-	files = glob.glob('//RealTimeRunTrajectoryFiles_5Sep2019/trajectoryfiles/*.json')
+	files = glob.glob('//trajectoryfiles/*.json')
 	for f1 in files:
 		os.remove(f1)
-	files_signal = glob.glob('//RealTimeRunTrajectoryFiles_5Sep2019/signalfiles/*.json')
+	files_signal = glob.glob('//signalfiles/*.json')
 	for f2 in files_signal:
 		os.remove(f2)
 
@@ -294,12 +294,10 @@ for r in range(0, len(Random_Seed)):
 	#Assigning signal head for phase 4
 	boulevard_nbLT=Vissim.Net.SignalControllers.ItemByKey(13).SGs.ItemByKey(4)
 
-	#ip_address='128.61.130.150'
-	# ip_address_post='128.61.129.39'
-	ip_address_post='127.0.0.1'
+	ip_address_post='add yours'
 	## Function to fetch data using flask
 	def getLiveSignal(epoch, simtime):
-	    ip_address='128.61.130.150'
+	    ip_address='add yours'
 	    intcode=[4794, 4795, 4796, 4797, 4798, 4799, 4800, 4801, 4802, 4804, 4805, 4806, 4807, 4808, 4809, 7322]
 	    hexcode=[[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 	    link='http://'+ip_address+':5000/LiveSignal/startepoch='+str(epoch)+'&simtime='+str(simtime)
@@ -317,8 +315,7 @@ for r in range(0, len(Random_Seed)):
 	        return [[] if (x==y and x!=-1) else x for x,y in zip(data, data1)]
 
 	def getLiveVolume(intrsc, approach, epoch, simtime):
-		ip_address='128.61.130.150'
-		#ip_address='128.61.129.39'
+		ip_address='add yours'
 		link='http://'+ip_address+':5000/LiveVolume/startepoch='+str(epoch)+'&intersection='+str(intrsc)+'&approach='+approach+"&simtime="+str(simtime)
 		with urllib.request.urlopen(link) as url:
 			data = url.read()
@@ -327,43 +324,12 @@ for r in range(0, len(Random_Seed)):
 		return data
 
 	def getTurn(epoch, simtime, intrsc, approach):
-		ip_address='128.61.130.150'
-		#ip_address='128.61.129.39'
+		ip_address='add yours'
 		link='http://'+ip_address+':5000/Turn/startepoch='+str(epoch)+'&simtime='+str(simtime)+'&intersection='+str(intrsc)+'&approach='+approach 
 		with urllib.request.urlopen(link) as url:
 			data = url.read()
 		data = ast.literal_eval(str(data)[2:-1])
 		return [round(i, 2) for i in data]
-
-	# def getLiveSignal(epoch, simtime):
-	#     ip_address='128.61.130.150'
-	#     intcode=[4794, 4795, 4796, 4797, 4798, 4799, 4800, 4801, 4802, 4804, 4805, 4806, 4807, 4808, 4809, 7322]
-	#     hexcode=[[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
-	#     link='http://'+ip_address+':5000/LiveSignal/startepoch='+str(epoch)+'&simtime='+str(simtime)
-	#     with urllib.request.urlopen(link) as url:
-	#         data = url.read()
-	#     data = ast.literal_eval(str(data)[2:-1])
-	#     link1='http://'+ip_address+':5000/LiveSignal/startepoch='+str(epoch)+'&simtime='+str(simtime-1)
-	#     with urllib.request.urlopen(link1) as url:
-	#         data1 = url.read()
-	#     data1 = ast.literal_eval(str(data1)[2:-1])  
-	#     return [[] if (x==y and x!=-1) else str(x) for x,y in zip(data, data1)]  
-
-	# def getLiveVolume(intrsc, approach, epoch, simtime):
-	#     ip_address='128.61.130.150'
-	#     link='http://'+ip_address+':5000/LiveVolume/startepoch='+str(epoch)+'&intersection='+str(intrsc)+'&approach='+approach+"&simtime="+str(simtime)
-	#     with urllib.request.urlopen(link) as url:
-	#         data = url.read()
-	#     data = ast.literal_eval(str(data)[2:-1])
-	#     return data
-
-	# def getTurn(epoch, simtime, intrsc, approach):
-	#     ip_address='128.61.130.150'
-	#     link='http://'+ip_address+':5000/Turn/startepoch='+str(epoch)+'&simtime='+str(simtime)+'&intersection='+str(intrsc)+'&approach='+approach 
-	#     with urllib.request.urlopen(link) as url:
-	#         data = url.read()
-	#     data = ast.literal_eval(str(data)[2:-1])
-	#     return [round(i, 2) for i in data]
 
 
 	i = 0
@@ -431,7 +397,7 @@ for r in range(0, len(Random_Seed)):
 
 			start_sim_wall_clock = math.floor(time.time())
 			print (start_sim_wall_clock)
-			f= open("//RealTimeRunTrajectoryFiles_5Sep2019/start_sim_wall_clock.txt","w")
+			f= open("//start_sim_wall_clock.txt","w")
 			f.write(str(start_sim_wall_clock))
 			f.close()
 			#startepoch = time.time()
